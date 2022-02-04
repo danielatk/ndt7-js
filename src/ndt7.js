@@ -85,7 +85,13 @@
 
       // If no server was specified then use a loadbalancer. If no loadbalancer
       // is specified, use the locate service from Measurement Lab.
-      const lbURL = (config && ('loadbalancer' in config)) ? config.loadbalancer : new URL('https://locate.measurementlab.net/v2/nearest/ndt/ndt7');
+      let lb = (config && ('loadbalancer' in config)) ? config.loadbalancer.toString() : 'https://locate.measurementlab.net/v2/nearest/ndt/ndt7';
+      // Append client_name to the loadbalancer URL.
+      lb += '?client_name=ndt7-js';
+      // Append the geohash, if available.
+      lb += (config && ('geohash' in config)) ?
+        '&client_geohash=' + config.geohash : '';
+      const lbURL = new URL(lb);
       callbacks.serverDiscovery({loadbalancer: lbURL});
       const response = await fetch(lbURL).catch((err) => {
         throw new Error(err);
