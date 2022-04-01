@@ -2,8 +2,6 @@
   "name": "@m-lab/ndt7",
   "version": "0.0.5",
   "description": "NDT7 client for measuring networks",
-  "main": "dist/ndt7.js",
-  "module": "dist/ndt7.js",
   "scripts": {
     "test": "mocha src/test && cp src/*.min.js src/test/e2e/ && testcafe chrome:headless,firefox:headless src/test/e2e/test.js --app \"node src/test/e2e/server.js\"",
     "coverage": "nyc --reporter=lcovonly  --file=coverage.cov --reporter=text npm run test",
@@ -42,11 +40,11 @@
     "webpack-cli": "^4.9.2"
   },
   "files": [
-    "src/**/*"
+    "dist/**/*"
   ],
   "dependencies": {
-    "node-fetch": "^2.6.0",
-    "workerjs": "^0.1.1",
+    "node-fetch": "^2.6.7",
+    "web-worker": "^1.2.0",
     "ws": "^8.5.0"
   },
   "optionalDependencies": {

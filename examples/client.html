@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script src="../src/ndt7.min.js" type="text/javascript"></script>
+    <script src="../dist/ndt7.web.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -13,8 +13,6 @@
         ndt7.test(
             {
                 userAcceptedDataPolicy: true,
-                downloadworkerfile: "../src/ndt7-download-worker.js",
-                uploadworkerfile: "../src/ndt7-upload-worker.js",
             },
             {
                 serverChosen: function (server) {
@@ -54,9 +52,6 @@
                     console.log(
                         `Upload test completed in ${(elapsed / 1000000).toFixed(2)}s
         Mean server throughput: ${throughput} Mbps`);
-                },
-                error: function (err) {
-                    console.log('Error while running the test:', err.message);
                 },
             },
         ).then((exitcode) => {
